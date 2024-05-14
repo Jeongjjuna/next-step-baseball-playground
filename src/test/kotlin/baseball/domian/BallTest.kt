@@ -2,37 +2,41 @@ package baseball.domian
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.DisplayName
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.inspectors.forAll
+import io.kotest.datatest.withData
 import io.kotest.matchers.should
 import io.kotest.matchers.string.startWith
 
+@DisplayName("Ball 생성 테스트")
 class BallTest : BehaviorSpec({
 
-    Given("1~9사이의 숫가 주어지고") {
-        val nums = listOf(1, 5, 9)
-        When("Ball 클래스를 생성하면") {
-            Then("성공") {
-                nums.forAll {
-                    shouldNotThrowAny {
-                        Ball.create(it)
-                    }
-                }
+    data class InRangeData(val num: Int)
+
+    withData(listOf("1~9 범위의 숫자가 주어졌을 때 Ball 클래스를 생성에 성공한다.")) {
+        withData(
+            InRangeData(1),
+            InRangeData(5),
+            InRangeData(9)
+        ) { (num) ->
+            shouldNotThrowAny {
+                Ball.create(num)
             }
         }
     }
 
-    Given("1~9이 외의 숫가 주어지고") {
-        val nums = listOf(0, 10, 999)
-        When("Ball 클래스를 생성하면") {
-            Then("예외를 반환") {
-                nums.forAll {
-                    val exception = shouldThrow<IllegalArgumentException> {
-                        Ball.create(it)
-                    }
-                    exception.message should startWith("[Error]")
-                }
+    data class OutRangeData(val num: Int)
+
+    withData(listOf("1~9 범위가 아닌 숫가 주어졌을 때 예외가 발생한다.")) {
+        withData(
+            OutRangeData(0),
+            OutRangeData(10),
+            OutRangeData(999)
+        ) { (num) ->
+            val exception = shouldThrow<IllegalArgumentException> {
+                Ball.create(num)
             }
+            exception.message should startWith("[Error]")
         }
     }
 

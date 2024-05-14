@@ -12,6 +12,7 @@ repositories {
 dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:5.6.2")
     testImplementation("io.kotest:kotest-assertions-score:5.6.2")
+    runtimeOnly("io.kotest:kotest-framework-datatest-jvm:5.6.2")
 }
 
 tasks.test {
