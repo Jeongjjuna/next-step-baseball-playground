@@ -5,6 +5,8 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.DisplayName
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.inspectors.forAll
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.should
 import io.kotest.matchers.string.startWith
 
@@ -32,6 +34,25 @@ class BallTest : DescribeSpec({
                     }
                     exception.message should startWith("[Error]")
                 }
+            }
+        }
+    }
+
+    describe("isMatch() 테스트") {
+        val ball = Ball(5)
+        context("같은 필드숫자가 주어지는 경우") {
+            val testBall = Ball(5)
+            it("True를 반환한다.") {
+                val result: Boolean = ball.isMatch(testBall)
+                result.shouldBeTrue()
+            }
+        }
+
+        context("다른 필드숫자가 주어지는 경우") {
+            val testBall = Ball(8)
+            it("False를 반환한다.") {
+                val result: Boolean = ball.isMatch(testBall)
+                result.shouldBeFalse()
             }
         }
     }

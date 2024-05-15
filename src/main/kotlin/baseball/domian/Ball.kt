@@ -20,4 +20,8 @@ class Ball(val num: Int) {
             throw IllegalArgumentException("[Error] : BALL의 숫자 범위 초과")
         }
     }
+
+    fun isMatch(testBall: Ball): Boolean {
+        return this.num == testBall.num
+    }
 }
