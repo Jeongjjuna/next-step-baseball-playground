@@ -42,7 +42,7 @@ class BallTest : DescribeSpec({
         val ball = Ball(5)
         context("같은 필드숫자가 주어지는 경우") {
             val testBall = Ball(5)
-            it("True를 반환한다.") {
+            it("true를 반환한다.") {
                 val result: Boolean = ball.isMatch(testBall)
                 result.shouldBeTrue()
             }
@@ -50,7 +50,7 @@ class BallTest : DescribeSpec({
 
         context("다른 필드숫자가 주어지는 경우") {
             val testBall = Ball(8)
-            it("False를 반환한다.") {
+            it("false를 반환한다.") {
                 val result: Boolean = ball.isMatch(testBall)
                 result.shouldBeFalse()
             }
