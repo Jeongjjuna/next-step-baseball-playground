@@ -4,6 +4,7 @@ class Balls(val balls: List<Ball>) {
 
     init {
         validateSize(balls)
+        validateUnique(balls)
     }
 
     companion object {
@@ -20,4 +21,12 @@ class Balls(val balls: List<Ball>) {
         }
     }
 
+    private fun validateUnique(balls: List<Ball>) {
+        val distinctNums = balls.map { ball -> ball.num }.distinct()
+        if (distinctNums.size != balls.size) {
+            throw IllegalArgumentException("[Error] : BALLS의 Ball들이 서로 다른 숫자가 아님")
+        }
+
+    }
+    
 }

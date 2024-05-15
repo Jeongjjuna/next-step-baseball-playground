@@ -14,3 +14,4 @@ Balls.class
 * create 생성테스트
     - [x] List<Ball>을 필드로 가지는 Balls생성
         - [x] 생성 시 길이가 3(Balls.SIZE)이 아니라면 예외반환
+        - [x] 생성 시 List<Ball>이 전부 서로 다르지 않다면 예외반환

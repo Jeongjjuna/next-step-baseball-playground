@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.inspectors.forAll
 import io.kotest.matchers.should
 import io.kotest.matchers.string.startWith
 
@@ -29,6 +30,21 @@ class BallsTest : DescribeSpec({
                     Balls.create(balls)
                 }
                 exception.message should startWith("[Error]")
+            }
+        }
+
+        context("서로 같은 숫자의 Ball가 존재한다면") {
+            val input = listOf<List<Ball>>(
+                listOf(Ball(1), Ball(1), Ball(1)),
+                listOf(Ball(1), Ball(1), Ball(2)),
+            )
+            it("생성에 실패한다.") {
+                input.forAll { balls ->
+                    val exception = shouldThrow<IllegalArgumentException> {
+                        Balls.create(balls)
+                    }
+                    exception.message should startWith("[Error]")
+                }
             }
         }
     }
