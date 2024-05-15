@@ -15,3 +15,6 @@ Balls.class
     - [x] List<Ball>을 필드로 가지는 Balls생성
         - [x] 생성 시 길이가 3(Balls.SIZE)이 아니라면 예외반환
         - [x] 생성 시 List<Ball>이 전부 서로 다르지 않다면 예외반환
+
+* Judgement.call
+    - [x] Balls에 (Ball, position)이 주어지면 스크라이크, 볼, 낫씽을 반환한다.

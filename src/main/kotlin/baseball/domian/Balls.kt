@@ -28,5 +28,23 @@ class Balls(val balls: List<Ball>) {
         }
 
     }
-    
+
+    fun isStrike(targetBall: Ball, targetPosition: Int): Boolean {
+        for (position in 0 until SIZE) {
+            if (targetBall.isMatch(balls[position]) && targetPosition == position) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun isBall(targetBall: Ball, targetPosition: Int): Boolean {
+        for (position in 0 until SIZE) {
+            if (targetBall.isMatch(balls[position]) && targetPosition != position) {
+                return true
+            }
+        }
+        return false
+    }
+
 }

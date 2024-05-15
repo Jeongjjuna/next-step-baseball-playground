@@ -5,6 +5,8 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.inspectors.forAll
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.should
 import io.kotest.matchers.string.startWith
 
@@ -45,6 +47,62 @@ class BallsTest : DescribeSpec({
                     }
                     exception.message should startWith("[Error]")
                 }
+            }
+        }
+    }
+
+    describe("isStrike() 테스트") {
+        val balls = Balls(listOf(Ball(1), Ball(3), Ball(5)))
+        context("같은 위치에 같은 숫자가 주어지면") {
+            it("true를 반환한다.") {
+                val result = balls.isStrike(Ball(3), 1)
+                result.shouldBeTrue()
+            }
+        }
+        context("같은 위치에 다른 숫자가 주어지면") {
+            it("false를 반환한다.") {
+                val result = balls.isStrike(Ball(4), 1)
+                result.shouldBeFalse()
+            }
+        }
+        context("다른 위치에 같은 숫자가 주어지면") {
+            it("false를 반환한다.") {
+                val result = balls.isStrike(Ball(3), 2)
+                result.shouldBeFalse()
+            }
+        }
+        context("다른 위치에 다른 숫자가 주어지면") {
+            it("false를 반환한다.") {
+                val result = balls.isStrike(Ball(4), 2)
+                result.shouldBeFalse()
+            }
+        }
+    }
+
+    describe("isBall() 테스트") {
+        val balls = Balls(listOf(Ball(1), Ball(3), Ball(5)))
+        context("다른 위치에 같은숫자가 주어지면") {
+            it("true를 반환한다.") {
+                val result = balls.isBall(Ball(3), 2)
+                result.shouldBeTrue()
+            }
+        }
+        context("다른 위치에 다른 숫자가 주어지면") {
+            it("false를 반환한다.") {
+                val result = balls.isBall(Ball(4), 2)
+                result.shouldBeFalse()
+            }
+        }
+        context("같은 위치에 다른 숫자가 주어지면") {
+            it("false를 반환한다.") {
+                val result = balls.isBall(Ball(4), 1)
+                result.shouldBeFalse()
+            }
+        }
+        context("같은 위치에 같은 숫자가 주어지면") {
+            it("false를 반환한다.") {
+                val result = balls.isBall(Ball(3), 1)
+                result.shouldBeFalse()
             }
         }
     }
