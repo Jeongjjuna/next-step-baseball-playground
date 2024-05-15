@@ -7,11 +7,19 @@ class Balls(val balls: List<Ball>) {
         validateUnique(balls)
     }
 
+    constructor(balls: String) : this(
+        parserBallsFromString(balls)
+    )
+
     companion object {
         const val SIZE = 3
 
         fun create(balls: List<Ball>): Balls {
             return Balls(balls)
+        }
+
+        private fun parserBallsFromString(balls: String): List<Ball> {
+            return balls.map { c -> Ball(c.toString().toInt()) }
         }
     }
 
