@@ -1,8 +1,8 @@
 package baseball.controller
 
 import baseball.const.ErrorMessage
-import baseball.domian.Ball
 import baseball.domian.Balls
+import baseball.domian.BallsGenerator
 import baseball.domian.GameStatus
 import baseball.domian.Judgement
 import baseball.domian.ResultType
@@ -21,13 +21,12 @@ class GameController {
 
     private fun play() {
 
-        // TODO : val ballGenerator = BallsGenerator()
+        val ballGenerator = BallsGenerator()
         val judgement = Judgement()
         val inputView = InputView()
         val outputView = OutputView()
 
-        val targetBalls = Balls(listOf(Ball(1), Ball(3), Ball(5)))
-
+        val targetBalls = ballGenerator.generate()
 
         do {
             val gameStatus = GameStatus()
