@@ -9,59 +9,101 @@ import baseball.domian.ResultType
 import baseball.view.InputView
 import baseball.view.OutputView
 
-class GameController {
+class GameController(
+    val ballGenerator: BallsGenerator = BallsGenerator(),
+    val judgement: Judgement = Judgement(),
+    val inputView: InputView = InputView(),
+    val outputView: OutputView = OutputView(),
+) {
 
-    private var isPlaying = true
+    private var isPlaying: Boolean = true
+    private var gameOvered: Boolean = false
+    private var gameStatus: GameStatus = GameStatus()
+    private var targetBalls: Balls? = null
+    private var userBalls: Balls? = null
 
     fun run() {
-        do {
+        while (isPlaying) {
             play()
-        } while (isPlaying)
+        }
     }
 
     private fun play() {
 
-        val ballGenerator = BallsGenerator()
-        val judgement = Judgement()
-        val inputView = InputView()
-        val outputView = OutputView()
+        initTargetBall()
 
-        val targetBalls = ballGenerator.generate()
+        while (!gameOvered) {
+            initGameStatus()
 
-        do {
-            val gameStatus = GameStatus()
+            inputUserNumberUntilValidInput()
+            calculateResult()
+            printResult()
 
-            var userBalls: Balls
-            while (true) {
-                try {
-                    userBalls = Balls(inputView.inputNumber())
-                    break
-                }catch (e: IllegalArgumentException) {
-                    println(e.message)
-                }
-            }
+            checkGameOvered()
+        }
 
-            for (position in 0 until Balls.SIZE) {
-                val result = judgement.judge(targetBalls, userBalls.balls[position], position)
-                when (result) {
-                    ResultType.STRIKE -> gameStatus.increaseStrike()
-                    ResultType.BALL -> gameStatus.increaseBall()
-                    else -> {}
-                }
-            }
+        printGameResult()
+        checkRestart()
+    }
 
-            outputView.printResult(gameStatus)
-
-            val gameOvered = gameStatus.isGameOver()
-        } while (!gameOvered)
-
-        outputView.printGameOver()
-
+    private fun checkRestart() {
         when (inputView.inputRestart()) {
             "1" -> {}
             "2" -> isPlaying = false
             else -> throw IllegalArgumentException(ErrorMessage.RESTART_INPUT_EXCEPTION)
         }
+    }
+
+    private fun printGameResult() {
+        outputView.printGameOver()
+    }
+
+    private fun checkGameOvered() {
+        gameOvered = gameStatus.isGameOver()
+    }
+
+    private fun printResult() {
+        outputView.printResult(gameStatus)
+    }
+
+    private fun calculateResult() {
+        for (position in 0 until Balls.SIZE) {
+            val result = judgement.judge(targetBalls!!, userBalls!!.balls[position], position)
+            applyResult(result)
+        }
+    }
+
+    private fun applyResult(result: ResultType) {
+        when (result) {
+            ResultType.STRIKE -> gameStatus.increaseStrike()
+            ResultType.BALL -> gameStatus.increaseBall()
+            else -> {}
+        }
+    }
+
+    private fun inputUserNumberUntilValidInput() {
+        var isValidInput = false
+        while (!isValidInput) {
+            isValidInput = inputUserNumber()
+        }
+    }
+
+    private fun inputUserNumber(): Boolean {
+        try {
+            userBalls = Balls(inputView.inputNumber())
+            return true
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+        return false
+    }
+
+    private fun initTargetBall() {
+        targetBalls = ballGenerator.generate()
+    }
+
+    private fun initGameStatus() {
+        gameStatus = GameStatus()
     }
 
 }
