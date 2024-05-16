@@ -1,5 +1,6 @@
 package baseball.view
 
+import baseball.const.ErrorMessage
 import baseball.domian.GameStatus
 
 class OutputView {
@@ -24,13 +25,13 @@ class OutputView {
         val ballMessage = when (gameStatus.ball) {
             0 -> ""
             1, 2, 3 -> BALL_MESSAGE.format(gameStatus.ball)
-            else -> throw IllegalArgumentException("[Error] 볼 개수는 0, 1, 2, 3개 중에 하나여야 합니다.")
+            else -> throw IllegalArgumentException(ErrorMessage.BALL_COUNT_EXCEPTION)
         }
 
         val strikeMessage = when (gameStatus.strike) {
             0 -> ""
             1, 2, 3 -> STRIKE_MESSAGE.format(gameStatus.strike)
-            else -> throw IllegalArgumentException("[Error] 스트라이크 개수는 0, 1, 2, 3개 중에 하나여야 합니다.")
+            else -> throw IllegalArgumentException(ErrorMessage.STRIKE_COUNT_EXCEPTION)
         }
 
         println(ballMessage + strikeMessage)

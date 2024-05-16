@@ -1,5 +1,6 @@
 package baseball.controller
 
+import baseball.const.ErrorMessage
 import baseball.domian.Ball
 import baseball.domian.Balls
 import baseball.domian.GameStatus
@@ -49,9 +50,9 @@ class GameController {
         outputView.printGameOver()
 
         when (inputView.inputRestart()) {
-            "2" -> isPlaying = false
             "1" -> {}
-            else -> throw IllegalArgumentException("[Error] : 재시작 응답은 1 혹은 2로만 입력해야함")
+            "2" -> isPlaying = false
+            else -> throw IllegalArgumentException(ErrorMessage.RESTART_INPUT_EXCEPTION)
         }
     }
 

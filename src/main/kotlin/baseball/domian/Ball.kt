@@ -1,5 +1,7 @@
 package baseball.domian
 
+import baseball.const.ErrorMessage
+
 class Ball(val num: Int) {
 
     init {
@@ -17,7 +19,7 @@ class Ball(val num: Int) {
 
     private fun validateRange(num: Int) {
         if (num < MIN_RANGE || MAX_RANGE < num) {
-            throw IllegalArgumentException("[Error] : BALL의 숫자 범위 초과")
+            throw IllegalArgumentException(ErrorMessage.BALL_RANGE_EXCEPTION)
         }
     }
 
