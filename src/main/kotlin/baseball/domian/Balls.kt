@@ -21,7 +21,11 @@ class Balls(val balls: List<Ball>) {
         }
 
         private fun parserBallsFromString(balls: String): List<Ball> {
-            return balls.map { c -> Ball(c.toString().toInt()) }
+            try {
+                return balls.map { c -> Ball(c.toString().toInt()) }
+            }catch (e: NumberFormatException) {
+                throw IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_EXCEPTION, e)
+            }
         }
     }
 

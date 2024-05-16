@@ -30,7 +30,16 @@ class GameController {
 
         do {
             val gameStatus = GameStatus()
-            val userBalls = Balls(inputView.inputNumber())
+
+            var userBalls: Balls
+            while (true) {
+                try {
+                    userBalls = Balls(inputView.inputNumber())
+                    break
+                }catch (e: IllegalArgumentException) {
+                    println(e.message)
+                }
+            }
 
             for (position in 0 until Balls.SIZE) {
                 val result = judgement.judge(targetBalls, userBalls.balls[position], position)

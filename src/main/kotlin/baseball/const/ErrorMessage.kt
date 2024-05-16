@@ -13,5 +13,6 @@ object ErrorMessage {
     val RESTART_INPUT_EXCEPTION = createMessage("재시작 응답은 1 혹은 2로만 입력해야함")
     val BALLS_SIZE_EXCEPTION = createMessage("BALLS의 size가 3이 아님")
     val BALLS_UNIQUE_EXCEPTION = createMessage("BALLS의 Ball들이 서로 다른 숫자가 아님")
+    val NUMBER_FORMAT_EXCEPTION = createMessage("입력값은 숫자여야 합니다.")
 
 }
