@@ -24,13 +24,13 @@ class OutputView {
 
         val ballMessage = when (gameStatus.ball) {
             0 -> ""
-            1, 2, 3 -> BALL_MESSAGE.format(gameStatus.ball)
+            in 1..3 -> BALL_MESSAGE.format(gameStatus.ball)
             else -> throw IllegalArgumentException(ErrorMessage.BALL_COUNT_EXCEPTION)
         }
 
         val strikeMessage = when (gameStatus.strike) {
             0 -> ""
-            1, 2, 3 -> STRIKE_MESSAGE.format(gameStatus.strike)
+            in 1..3 -> STRIKE_MESSAGE.format(gameStatus.strike)
             else -> throw IllegalArgumentException(ErrorMessage.STRIKE_COUNT_EXCEPTION)
         }
 
