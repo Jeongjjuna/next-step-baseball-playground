@@ -1,6 +1,11 @@
 package baseball.domian
 
-class GameStatus(var strike: Int = 0, var ball: Int = 0) {
+class GameStatus(strike: Int = 0, ball: Int = 0) {
+
+    var strike = strike
+        private set
+    var ball = ball
+        private set
 
     fun increaseStrike() {
         strike += 1
