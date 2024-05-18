@@ -16,9 +16,7 @@ class Balls(val balls: List<Ball>) {
     companion object {
         const val SIZE = 3
 
-        fun create(balls: List<Ball>): Balls {
-            return Balls(balls)
-        }
+        fun create(balls: List<Ball>): Balls  = Balls(balls)
 
         private fun parserBallsFromString(balls: String): List<Ball> {
             try {

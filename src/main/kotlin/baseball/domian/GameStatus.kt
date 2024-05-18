@@ -10,12 +10,8 @@ class GameStatus(var strike: Int = 0, var ball: Int = 0) {
         ball += 1
     }
 
-    fun isNothing(): Boolean {
-        return strike == 0 && ball == 0
-    }
+    fun isNothing(): Boolean  = strike == 0 && ball == 0
 
-    fun isGameOver(): Boolean {
-        return strike == 3
-    }
+    fun isGameOver(): Boolean = strike == 3
 
 }
