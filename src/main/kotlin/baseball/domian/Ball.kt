@@ -12,7 +12,7 @@ class Ball(val num: Int) {
         private const val MIN_RANGE = 1
         private const val MAX_RANGE = 9
 
-        fun create(num: Int) = Ball(num)
+        fun create(num: Int): Ball = Ball(num)
     }
 
     private fun validateRange(num: Int) {
