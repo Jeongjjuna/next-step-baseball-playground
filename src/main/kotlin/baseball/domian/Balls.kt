@@ -50,7 +50,6 @@ class Balls(val balls: List<Ball>) {
  * String 확장 클래스
  */
 fun String.toBallList(): List<Ball> {
-    println("testste")
     try {
         return this.map { c -> Ball(c.toString().toInt()) }
     } catch (e: NumberFormatException) {
