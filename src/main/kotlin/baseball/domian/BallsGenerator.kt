@@ -4,6 +4,11 @@ import kotlin.random.Random
 
 class BallsGenerator {
 
+    companion object {
+        private const val MIN_RANGE = 1
+        private const val MAX_RANGE = 10
+    }
+
     fun generate(): Balls {
         var balls: Balls
 
@@ -16,13 +21,7 @@ class BallsGenerator {
         }
     }
 
-    private fun generateBallList(): List<Ball> {
-        val ballList = mutableListOf<Ball>()
-        repeat(3) {
-            val ball = Ball(Random.nextInt(1, 10))
-            ballList.add(ball)
-        }
-        return ballList
-    }
+    private fun generateBallList() = MutableList(3) { createRandomBall() }
 
+    private fun createRandomBall() = Ball(Random.nextInt(MIN_RANGE, MAX_RANGE))
 }
