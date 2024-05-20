@@ -22,26 +22,20 @@ class Balls(val balls: List<Ball>) {
     private fun isSize(balls: List<Ball>) = balls.size == SIZE
 
     private fun isUnique(balls: List<Ball>): Boolean {
-        val distinctNums = balls.map { ball -> ball.num }.distinct()
+        val distinctNums = balls
+            .map { ball -> ball.num }
+            .distinct()
         return distinctNums.size == balls.size
     }
 
     fun isStrike(targetBall: Ball, targetPosition: Int): Boolean {
-        for (position in 0 until SIZE) {
-            if (targetBall.isMatch(balls[position]) && targetPosition == position) {
-                return true
-            }
-        }
-        return false
+        return balls.indices.any { position ->
+            targetBall.isMatch(balls[position]) && targetPosition == position }
     }
 
     fun isBall(targetBall: Ball, targetPosition: Int): Boolean {
-        for (position in 0 until SIZE) {
-            if (targetBall.isMatch(balls[position]) && targetPosition != position) {
-                return true
-            }
-        }
-        return false
+        return balls.indices.any { position ->
+            targetBall.isMatch(balls[position]) && targetPosition != position }
     }
 
 }
