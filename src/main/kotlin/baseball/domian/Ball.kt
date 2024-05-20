@@ -5,7 +5,7 @@ import baseball.const.ErrorMessage
 class Ball(val num: Int) {
 
     init {
-        validateRange(num)
+        require(isRange(num)) { ErrorMessage.BALL_RANGE_EXCEPTION }
     }
 
     companion object {
@@ -15,11 +15,7 @@ class Ball(val num: Int) {
         fun create(num: Int): Ball = Ball(num)
     }
 
-    private fun validateRange(num: Int) {
-        if (num < MIN_RANGE || MAX_RANGE < num) {
-            throw IllegalArgumentException(ErrorMessage.BALL_RANGE_EXCEPTION)
-        }
-    }
-
     fun isMatch(testBall: Ball) = this.num == testBall.num
+
+    private fun isRange(num: Int) = num in MIN_RANGE..MAX_RANGE
 }

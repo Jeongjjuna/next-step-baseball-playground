@@ -5,40 +5,25 @@ import baseball.const.ErrorMessage
 class Balls(val balls: List<Ball>) {
 
     init {
-        validateSize(balls)
-        validateUnique(balls)
+        require(isSize(balls)) { ErrorMessage.BALLS_SIZE_EXCEPTION }
+        require(isUnique(balls)) { ErrorMessage.BALLS_UNIQUE_EXCEPTION }
     }
 
-    constructor(balls: String): this(
-        parserBallsFromString(balls)
+    constructor(balls: String) : this(
+        balls.toBallList()
     )
 
     companion object {
         const val SIZE = 3
 
-        fun create(balls: List<Ball>): Balls  = Balls(balls)
-
-        private fun parserBallsFromString(balls: String): List<Ball> {
-            try {
-                return balls.map { c -> Ball(c.toString().toInt()) }
-            }catch (e: NumberFormatException) {
-                throw IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_EXCEPTION, e)
-            }
-        }
+        fun create(balls: List<Ball>): Balls = Balls(balls)
     }
 
-    private fun validateSize(balls: List<Ball>) {
-        if (balls.size != SIZE) {
-            throw IllegalArgumentException(ErrorMessage.BALLS_SIZE_EXCEPTION)
-        }
-    }
+    private fun isSize(balls: List<Ball>) = balls.size == SIZE
 
-    private fun validateUnique(balls: List<Ball>) {
+    private fun isUnique(balls: List<Ball>): Boolean {
         val distinctNums = balls.map { ball -> ball.num }.distinct()
-        if (distinctNums.size != balls.size) {
-            throw IllegalArgumentException(ErrorMessage.BALLS_UNIQUE_EXCEPTION)
-        }
-
+        return distinctNums.size == balls.size
     }
 
     fun isStrike(targetBall: Ball, targetPosition: Int): Boolean {
@@ -59,4 +44,16 @@ class Balls(val balls: List<Ball>) {
         return false
     }
 
+}
+
+/**
+ * String 확장 클래스
+ */
+fun String.toBallList(): List<Ball> {
+    println("testste")
+    try {
+        return this.map { c -> Ball(c.toString().toInt()) }
+    } catch (e: NumberFormatException) {
+        throw IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_EXCEPTION, e)
+    }
 }
