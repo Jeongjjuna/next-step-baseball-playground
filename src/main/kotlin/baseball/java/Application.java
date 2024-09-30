@@ -3,6 +3,11 @@ package baseball.java;
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("아 몰랑");
+
+        InputHandler inputHandler = new ConsoleInputHandler();
+        OutputHandler outputHandler = new ConsoleOutputHandler();
+
+        BaseBallGame baseBallGame = new BaseBallGame(inputHandler, outputHandler);
+        baseBallGame.run();
     }
 }
