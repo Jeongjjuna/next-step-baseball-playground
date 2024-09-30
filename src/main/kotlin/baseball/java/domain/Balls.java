@@ -25,8 +25,8 @@ public class Balls {
     }
 
     private static void validateDuplicate(List<Integer> ballNums) {
-        Set uniquNums = new HashSet<>(ballNums);
-        if (uniquNums.size() != ballNums.size()) {
+        Set<Integer> uniqueNums = new HashSet<>(ballNums);
+        if (uniqueNums.size() != ballNums.size()) {
             throw new IllegalArgumentException("[ERROR] 중복되는 값으로 생성할 수 없습니다.");
         }
     }
