@@ -15,8 +15,7 @@ class GameStatus(strike: Int = 0, ball: Int = 0) {
         ball += 1
     }
 
-    fun isNothing(): Boolean  = strike == 0 && ball == 0
+    fun isNothing(): Boolean = strike == 0 && ball == 0
 
     fun isGameOver(): Boolean = strike == 3
-
 }

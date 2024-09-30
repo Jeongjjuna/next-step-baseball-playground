@@ -29,7 +29,6 @@ class GameController(
     }
 
     private fun play() {
-
         initTargetBall()
 
         while (!gameOvered) {
@@ -108,5 +107,4 @@ class GameController(
     private fun initGameStatus() {
         gameStatus = GameStatus()
     }
-
 }

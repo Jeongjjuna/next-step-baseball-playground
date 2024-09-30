@@ -3,7 +3,7 @@ package baseball.kotlin.const
 object ErrorMessage {
     private const val ERROR_PREFIX = "[Error] : "
 
-    private fun createMessage(message: String) : String {
+    private fun createMessage(message: String): String {
         return ERROR_PREFIX + message
     }
 
@@ -15,5 +15,4 @@ object ErrorMessage {
     val BALLS_UNIQUE_EXCEPTION = createMessage("BALLS의 Ball들이 서로 다른 숫자가 아님")
     val NUMBER_FORMAT_EXCEPTION = createMessage("입력값은 숫자여야 합니다.")
     val NULL_EXCEPTION = createMessage("Null 값이 될 수 없습니다.")
-
 }

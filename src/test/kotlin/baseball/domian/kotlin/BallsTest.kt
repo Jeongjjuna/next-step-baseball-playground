@@ -61,7 +61,7 @@ class BallsTest : DescribeSpec({
         context("서로 같은 숫자의 Ball가 존재한다면") {
             val input = listOf<List<Ball>>(
                 listOf(Ball(1), Ball(1), Ball(1)),
-                listOf(Ball(1), Ball(1), Ball(2)),
+                listOf(Ball(1), Ball(1), Ball(2))
             )
             it("생성에 실패한다.") {
                 input.forAll { balls ->
@@ -129,5 +129,4 @@ class BallsTest : DescribeSpec({
             }
         }
     }
-
 })

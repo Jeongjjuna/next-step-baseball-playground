@@ -30,14 +30,15 @@ class Balls(val balls: List<Ball>) {
 
     fun isStrike(targetBall: Ball, targetPosition: Int): Boolean {
         return balls.indices.any { position ->
-            targetBall.isMatch(balls[position]) && targetPosition == position }
+            targetBall.isMatch(balls[position]) && targetPosition == position
+        }
     }
 
     fun isBall(targetBall: Ball, targetPosition: Int): Boolean {
         return balls.indices.any { position ->
-            targetBall.isMatch(balls[position]) && targetPosition != position }
+            targetBall.isMatch(balls[position]) && targetPosition != position
+        }
     }
-
 }
 
 /**

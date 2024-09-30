@@ -46,7 +46,6 @@ class GameStatusTest : DescribeSpec({
                     val result = gameStatus.isNothing()
                     result.shouldBeFalse()
                 }
-
             }
         }
     }
@@ -68,5 +67,4 @@ class GameStatusTest : DescribeSpec({
             }
         }
     }
-
 })
