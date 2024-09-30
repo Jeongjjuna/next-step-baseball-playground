@@ -1,4 +1,4 @@
-package baseball.domian
+package baseball.domian.kotlin
 
 import baseball.kotlin.domian.GameStatus
 import io.kotest.core.annotation.DisplayName

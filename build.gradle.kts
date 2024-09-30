@@ -1,5 +1,16 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.9.24"
+    id("org.jlleitschuh.gradle.ktlint") version "11.4.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 group = "org.freak"
@@ -15,10 +26,12 @@ dependencies {
     runtimeOnly("io.kotest:kotest-framework-datatest-jvm:5.6.2")
 }
 
-tasks.test {
-    useJUnitPlatform()
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict")
+    }
 }
 
-kotlin {
-    jvmToolchain(11)
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
