@@ -6,9 +6,9 @@ public class Ball {
     private static final int MIN_NUM_RANGE = 1;
 
     private final int number;
-    private final int pos; // 0, 1, 2 ...
+    private final int pos;
 
-    private Ball(int number, int pos) {
+    public Ball(int number, int pos) {
         this.number = number;
         this.pos = pos;
     }
@@ -22,5 +22,13 @@ public class Ball {
         if (number < MIN_NUM_RANGE || number > MAX_NUM_RANGE) {
             throw new IllegalArgumentException("[ERROR] Ball의 숫자 범위는 1~9 여야 합니다.");
         }
+    }
+
+    public boolean isBall(Ball otherBall) {
+        return number == otherBall.number && pos != otherBall.pos;
+    }
+
+    public boolean isStrike(Ball otherBall) {
+        return number == otherBall.number && pos == otherBall.pos;
     }
 }

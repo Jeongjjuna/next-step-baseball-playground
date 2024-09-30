@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Balls {
 
-    private static final int BALLS_SIZE = 3;
+    public static final int SIZE = 3;
 
     private final List<Ball> balls;
 
@@ -22,7 +22,7 @@ public class Balls {
     }
 
     private static void validateSize(List<Integer> ballNums) {
-        if (ballNums.size() != BALLS_SIZE) {
+        if (ballNums.size() != SIZE) {
             throw new IllegalArgumentException("[ERROR] Balls의 길이는 3 이어야 합니다.");
         }
     }
@@ -35,4 +35,32 @@ public class Balls {
         }
         return balls;
     }
+
+    public boolean isThreeStrikeAgainst(Balls otherBalls) {
+        return balls.stream()
+                .allMatch(otherBalls::isStrike);
+    }
+
+    public int countBallAgainst(Balls otherBalls) {
+        return (int) balls.stream()
+                .filter(otherBalls::isBall)
+                .count();
+    }
+
+    public int countStrikeAgainst(Balls otherBalls) {
+        return (int) balls.stream()
+                .filter(otherBalls::isStrike)
+                .count();
+    }
+
+    private boolean isBall(Ball otherBall) {
+        return balls.stream()
+                .anyMatch(ball -> ball.isBall(otherBall));
+    }
+
+    private boolean isStrike(Ball otherBall) {
+        return balls.stream()
+                .anyMatch(ball -> ball.isStrike(otherBall));
+    }
+
 }
