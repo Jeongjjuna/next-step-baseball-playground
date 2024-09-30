@@ -1,7 +1,9 @@
 package baseball.java.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Balls {
 
@@ -16,9 +18,17 @@ public class Balls {
     public static Balls create(List<Integer> ballNums) {
 
         validateSize(ballNums);
+        validateDuplicate(ballNums);
 
         List<Ball> balls = createBallListOf(ballNums);
         return new Balls(balls);
+    }
+
+    private static void validateDuplicate(List<Integer> ballNums) {
+        Set uniquNums = new HashSet<>(ballNums);
+        if (uniquNums.size() != ballNums.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복되는 값으로 생성할 수 없습니다.");
+        }
     }
 
     private static void validateSize(List<Integer> ballNums) {

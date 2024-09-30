@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("[Balls 테스트]")
 class BallsTest {
 
-    @DisplayName("[create] 볼리스트 생성 시 Size 테스트")
+    @DisplayName("[create] Balls 생성 성공")
     @Test
     void test1() {
         // given
@@ -22,22 +22,35 @@ class BallsTest {
         assertDoesNotThrow(() -> Balls.create(ballNums));
     }
 
-    @DisplayName("[create] 볼리스트 생성 시 Size 실패 테스트")
+    @DisplayName("[create] Balls 생성 시 Size 실패 테스트")
     @Test
     void test2() {
         // given
         List<Integer> ballNums1 = List.of(1, 2);
         List<Integer> ballNums2 = List.of(1, 2, 3, 4);
 
-
         // when & then
         assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums1));
         assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums2));
     }
 
-    @DisplayName("[isThreeStrikeAgainst]")
+    @DisplayName("[create] Balls 생성 시 Duplicated 실패 테스트")
     @Test
     void test3() {
+        // given
+        List<Integer> ballNums1 = List.of(1, 2, 2);
+        List<Integer> ballNums2 = List.of(2, 1, 2);
+        List<Integer> ballNums3 = List.of(2, 2, 2);
+
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums1));
+        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums2));
+        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums3));
+    }
+
+    @DisplayName("[isThreeStrikeAgainst]")
+    @Test
+    void test4() {
         // given
         Balls balls = Balls.create(List.of(1, 2, 3));
         Balls otherBalls = Balls.create(List.of(1, 2, 3));
@@ -51,7 +64,7 @@ class BallsTest {
 
     @DisplayName("[countBallAgainst]")
     @Test
-    void test4() {
+    void test5() {
         // given
         Balls balls = Balls.create(List.of(1, 2, 3));
 
@@ -73,7 +86,7 @@ class BallsTest {
 
     @DisplayName("[countStrikeAgainst]")
     @Test
-    void test5() {
+    void test6() {
         // given
         Balls balls = Balls.create(List.of(1, 2, 3));
 
