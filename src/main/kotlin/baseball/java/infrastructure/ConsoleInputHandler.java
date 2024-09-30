@@ -1,4 +1,4 @@
-package baseball.java;
+package baseball.java.infrastructure;
 
 import baseball.java.domain.Balls;
 import baseball.java.domain.UserAction;

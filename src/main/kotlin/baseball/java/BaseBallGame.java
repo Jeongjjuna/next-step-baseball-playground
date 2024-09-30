@@ -3,6 +3,9 @@ package baseball.java;
 import baseball.java.domain.Balls;
 import baseball.java.domain.GameResult;
 import baseball.java.domain.UserAction;
+import baseball.java.infrastructure.BallGenerator;
+import baseball.java.infrastructure.InputHandler;
+import baseball.java.infrastructure.OutputHandler;
 
 public class BaseBallGame {
 

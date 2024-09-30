@@ -1,4 +1,4 @@
-package baseball.java;
+package baseball.java.infrastructure;
 
 import baseball.java.domain.Balls;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomBallGenerator implements BallGenerator{
+public class RandomBallGenerator implements BallGenerator {
 
     /**
      * Random 외부 API를 주입받아서 사용해야, 테스트를 구현할 수 있을 것 같다.
@@ -21,7 +21,6 @@ public class RandomBallGenerator implements BallGenerator{
             ballNums.add(num);
         }
 
-        System.out.println(ballNums);
         return Balls.create(ballNums);
     }
 }
