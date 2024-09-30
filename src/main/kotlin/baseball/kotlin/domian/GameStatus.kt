@@ -1,4 +1,4 @@
-package baseball.domian
+package baseball.kotlin.domian
 
 class GameStatus(strike: Int = 0, ball: Int = 0) {
 

@@ -1,6 +1,6 @@
-package baseball
+package baseball.kotlin
 
-import baseball.controller.GameController
+import baseball.kotlin.controller.GameController
 
 fun main() {
     val gameController = GameController()

@@ -1,4 +1,4 @@
-package baseball.view
+package baseball.kotlin.view
 
 class InputView {
 

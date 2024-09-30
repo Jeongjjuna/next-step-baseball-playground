@@ -1,13 +1,13 @@
-package baseball.controller
+package baseball.kotlin.controller
 
-import baseball.const.ErrorMessage
-import baseball.domian.Balls
-import baseball.domian.BallsGenerator
-import baseball.domian.GameStatus
-import baseball.domian.Judgement
-import baseball.domian.ResultType
-import baseball.view.InputView
-import baseball.view.OutputView
+import baseball.kotlin.const.ErrorMessage
+import baseball.kotlin.domian.Balls
+import baseball.kotlin.domian.BallsGenerator
+import baseball.kotlin.domian.GameStatus
+import baseball.kotlin.domian.Judgement
+import baseball.kotlin.domian.ResultType
+import baseball.kotlin.view.InputView
+import baseball.kotlin.view.OutputView
 
 class GameController(
     val ballGenerator: BallsGenerator = BallsGenerator(),

@@ -1,7 +1,7 @@
-package baseball.view
+package baseball.kotlin.view
 
-import baseball.const.ErrorMessage
-import baseball.domian.GameStatus
+import baseball.kotlin.const.ErrorMessage
+import baseball.kotlin.domian.GameStatus
 
 class OutputView {
 

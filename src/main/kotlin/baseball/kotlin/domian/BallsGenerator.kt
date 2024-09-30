@@ -1,4 +1,4 @@
-package baseball.domian
+package baseball.kotlin.domian
 
 import kotlin.random.Random
 

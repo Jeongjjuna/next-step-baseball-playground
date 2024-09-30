@@ -1,4 +1,4 @@
-package baseball.const
+package baseball.kotlin.const
 
 object ErrorMessage {
     private const val ERROR_PREFIX = "[Error] : "

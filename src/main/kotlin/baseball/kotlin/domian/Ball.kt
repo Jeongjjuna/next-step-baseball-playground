@@ -1,6 +1,6 @@
-package baseball.domian
+package baseball.kotlin.domian
 
-import baseball.const.ErrorMessage
+import baseball.kotlin.const.ErrorMessage
 
 class Ball(val num: Int) {
 
