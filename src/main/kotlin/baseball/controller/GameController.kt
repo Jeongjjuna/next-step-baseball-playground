@@ -67,8 +67,11 @@ class GameController(
     }
 
     private fun calculateResult() {
+        val checkedTargetBalls = checkNotNull(targetBalls) { ErrorMessage.NULL_EXCEPTION }
+        val checkedUserBalls = checkNotNull(userBalls) { ErrorMessage.NULL_EXCEPTION }
+
         for (position in 0 until Balls.SIZE) {
-            val result = judgement.judge(targetBalls!!, userBalls!!.balls[position], position)
+            val result = judgement.judge(checkedTargetBalls, checkedUserBalls.balls[position], position)
             applyResult(result)
         }
     }

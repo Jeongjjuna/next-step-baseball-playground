@@ -14,5 +14,6 @@ object ErrorMessage {
     val BALLS_SIZE_EXCEPTION = createMessage("BALLS의 size가 3이 아님")
     val BALLS_UNIQUE_EXCEPTION = createMessage("BALLS의 Ball들이 서로 다른 숫자가 아님")
     val NUMBER_FORMAT_EXCEPTION = createMessage("입력값은 숫자여야 합니다.")
+    val NULL_EXCEPTION = createMessage("Null 값이 될 수 없습니다.")
 
 }
