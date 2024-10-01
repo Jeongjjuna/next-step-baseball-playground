@@ -1,9 +1,5 @@
-package baseball.domian.kotlin
+package baseball.kotlin.domian
 
-import baseball.kotlin.domian.Ball
-import baseball.kotlin.domian.Balls
-import baseball.kotlin.domian.Judgement
-import baseball.kotlin.domian.ResultType
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe

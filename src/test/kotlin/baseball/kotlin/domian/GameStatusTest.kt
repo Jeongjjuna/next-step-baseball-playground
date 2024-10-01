@@ -1,6 +1,5 @@
-package baseball.domian.kotlin
+package baseball.kotlin.domian
 
-import baseball.kotlin.domian.GameStatus
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.inspectors.forAll

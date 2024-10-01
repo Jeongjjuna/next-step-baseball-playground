@@ -1,7 +1,5 @@
-package baseball.domian.kotlin
+package baseball.kotlin.domian
 
-import baseball.kotlin.domian.Ball
-import baseball.kotlin.domian.Balls
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.throwables.shouldThrowAny
