@@ -1,5 +1,6 @@
 package baseball.java.domain;
 
+import baseball.java.GameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class UserActionTest {
         String invalidInput2 = "134&^%^";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,() -> UserAction.create(invalidInput1));
-        assertThrows(IllegalArgumentException.class, () -> UserAction.create(invalidInput2));
+        assertThrows(GameException.class,() -> UserAction.create(invalidInput1));
+        assertThrows(GameException.class, () -> UserAction.create(invalidInput2));
     }
 }

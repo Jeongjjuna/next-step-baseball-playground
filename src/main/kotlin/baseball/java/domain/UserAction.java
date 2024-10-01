@@ -1,5 +1,7 @@
 package baseball.java.domain;
 
+import baseball.java.GameException;
+
 import java.util.Arrays;
 
 public enum UserAction {
@@ -17,6 +19,6 @@ public enum UserAction {
         return Arrays.stream(UserAction.values())
                 .filter(action -> action.description.equals(input))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력값이 올바르지 않습니다."));
+                .orElseThrow(() -> new GameException("[ERROR] 입력값이 올바르지 않습니다."));
     }
 }

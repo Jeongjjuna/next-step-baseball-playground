@@ -1,5 +1,7 @@
 package baseball.java.domain;
 
+import baseball.java.GameException;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,13 +29,13 @@ public class Balls {
     private static void validateDuplicate(List<Integer> ballNums) {
         Set<Integer> uniqueNums = new HashSet<>(ballNums);
         if (uniqueNums.size() != ballNums.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 값으로 생성할 수 없습니다.");
+            throw new GameException("[ERROR] 중복되는 값으로 생성할 수 없습니다.");
         }
     }
 
     private static void validateSize(List<Integer> ballNums) {
         if (ballNums.size() != SIZE) {
-            throw new IllegalArgumentException("[ERROR] Balls의 길이는 3 이어야 합니다.");
+            throw new GameException("[ERROR] Balls의 길이는 3 이어야 합니다.");
         }
     }
 

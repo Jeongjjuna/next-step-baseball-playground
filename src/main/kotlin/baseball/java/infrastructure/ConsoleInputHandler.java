@@ -1,5 +1,6 @@
 package baseball.java.infrastructure;
 
+import baseball.java.GameException;
 import baseball.java.domain.Balls;
 import baseball.java.domain.UserAction;
 
@@ -25,7 +26,7 @@ public class ConsoleInputHandler implements InputHandler {
 
             try {
                 return Balls.create(nums);
-            } catch (IllegalArgumentException e) {
+            } catch (GameException e) {
                 System.out.println(e.getMessage());
             }
         }

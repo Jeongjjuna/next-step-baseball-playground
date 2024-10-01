@@ -1,5 +1,6 @@
 package baseball.java.infrastructure;
 
+import baseball.java.GameException;
 import baseball.java.domain.AnswerBalls;
 import baseball.java.domain.Balls;
 
@@ -25,7 +26,7 @@ public class RandomBallGenerator implements BallGenerator {
 
             try {
                 return AnswerBalls.create(ballNums);
-            } catch (IllegalArgumentException e) {
+            } catch (GameException e) {
                 System.out.println(e.getMessage());
             }
         }

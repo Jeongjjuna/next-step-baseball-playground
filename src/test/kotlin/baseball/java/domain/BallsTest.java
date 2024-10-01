@@ -1,5 +1,6 @@
 package baseball.java.domain;
 
+import baseball.java.GameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +31,8 @@ class BallsTest {
         List<Integer> ballNums2 = List.of(1, 2, 3, 4);
 
         // when & then
-        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums1));
-        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums2));
+        assertThrows(GameException.class, () -> Balls.create(ballNums1));
+        assertThrows(GameException.class, () -> Balls.create(ballNums2));
     }
 
     @DisplayName("[create] Balls 생성 시 Duplicated 실패 테스트")
@@ -43,9 +44,9 @@ class BallsTest {
         List<Integer> ballNums3 = List.of(2, 2, 2);
 
         // when & then
-        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums1));
-        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums2));
-        assertThrows(IllegalArgumentException.class, () -> Balls.create(ballNums3));
+        assertThrows(GameException.class, () -> Balls.create(ballNums1));
+        assertThrows(GameException.class, () -> Balls.create(ballNums2));
+        assertThrows(GameException.class, () -> Balls.create(ballNums3));
     }
 
     @DisplayName("[isThreeStrikeAgainst]")

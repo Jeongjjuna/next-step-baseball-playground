@@ -1,5 +1,7 @@
 package baseball.java.domain;
 
+import baseball.java.GameException;
+
 public class Ball {
 
     private static final int MAX_NUM_RANGE = 9;
@@ -20,7 +22,7 @@ public class Ball {
 
     private static void validateRange(int number) {
         if (number < MIN_NUM_RANGE || number > MAX_NUM_RANGE) {
-            throw new IllegalArgumentException("[ERROR] Ball의 숫자 범위는 1~9 여야 합니다.");
+            throw new GameException("[ERROR] Ball의 숫자 범위는 1~9 여야 합니다.");
         }
     }
 

@@ -33,31 +33,37 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
     @Override
     public void run() {
 
-        while (gameSession.isInProgress()) {
-            initializeGameSession();
-            AnswerBalls answerBalls = ballGenerator.generateBalls();
+        try {
+            while (gameSession.isInProgress()) {
+                initializeGameSession();
+                AnswerBalls answerBalls = ballGenerator.generateBalls();
 
-            while (answerBalls.isInProgress()) {
-                outputHandler.showBallNumsInputComment();
+                while (answerBalls.isInProgress()) {
+                    outputHandler.showBallNumsInputComment();
 
-                Balls userInputBalls = inputHandler.getBallNumsFromUser();
+                    Balls userInputBalls = inputHandler.getBallNumsFromUser();
 
-                GameResult gameResult = getGameResult(userInputBalls, answerBalls);
+                    GameResult gameResult = getGameResult(userInputBalls, answerBalls);
 
-                outputHandler.showBallNumsResult(gameResult);
+                    outputHandler.showBallNumsResult(gameResult);
 
-                if (answerBalls.isThreeStrkieAgainst(userInputBalls)) {
-                    outputHandler.showGameEndComment();
-                    answerBalls.changeAnswerBallStatusToEnd();
+                    if (answerBalls.isThreeStrkieAgainst(userInputBalls)) {
+                        outputHandler.showGameEndComment();
+                        answerBalls.changeAnswerBallStatusToEnd();
+                    }
+                }
+
+                outputHandler.showRestartComment();
+                UserAction userActionAboutRestart = inputHandler.getRestartInputFromUser();
+
+                if (userActionAboutRestart == UserAction.END) {
+                    gameSession.changeGameStatusToEnd();
                 }
             }
-
-            outputHandler.showRestartComment();
-            UserAction userActionAboutRestart = inputHandler.getRestartInputFromUser();
-
-            if (userActionAboutRestart == UserAction.END) {
-                gameSession.changeGameStatusToEnd();
-            }
+        } catch (GameException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("[ERROR] Internal System Error");
         }
     }
 

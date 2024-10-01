@@ -1,6 +1,7 @@
 package baseball.java.domain;
 
 
+import baseball.java.GameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +31,8 @@ class BallTest {
         int invalidNum2 = 10;
 
         // when & then
-        assertThrows(IllegalArgumentException.class, () -> Ball.create(invalidNum1, 0));
-        assertThrows(IllegalArgumentException.class, () -> Ball.create(invalidNum2, 0));
+        assertThrows(GameException.class, () -> Ball.create(invalidNum1, 0));
+        assertThrows(GameException.class, () -> Ball.create(invalidNum2, 0));
     }
 
     @DisplayName("[isBall] 볼이 맞다면 true")
