@@ -13,15 +13,23 @@ public class ConsoleInputHandler implements InputHandler {
 
     @Override
     public Balls getBallNumsFromUser() {
-        String input = scanner.next();
 
-        List<Integer> nums = new ArrayList<>();
+        while (true) {
+            String input = scanner.next();
 
-        for (char expectedNumeric : input.toCharArray()) {
-            nums.add(Character.getNumericValue(expectedNumeric));
+            List<Integer> nums = new ArrayList<>();
+
+            for (char expectedNumeric : input.toCharArray()) {
+                nums.add(Character.getNumericValue(expectedNumeric));
+            }
+
+            try {
+                return Balls.create(nums);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
-        return Balls.create(nums);
     }
 
     @Override

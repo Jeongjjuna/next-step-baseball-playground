@@ -11,7 +11,7 @@ public class Balls {
 
     private final List<Ball> balls;
 
-    private Balls(List<Ball> balls) {
+    protected Balls(List<Ball> balls) {
         this.balls = balls;
     }
 

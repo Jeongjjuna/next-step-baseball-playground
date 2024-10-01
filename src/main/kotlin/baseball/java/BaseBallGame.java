@@ -1,8 +1,10 @@
 package baseball.java;
 
 import baseball.java.config.GameConfig;
+import baseball.java.domain.AnswerBalls;
 import baseball.java.domain.Balls;
 import baseball.java.domain.GameResult;
+import baseball.java.domain.GameSession;
 import baseball.java.domain.UserAction;
 import baseball.java.game.GameInitializable;
 import baseball.java.game.GameRunnable;
@@ -15,8 +17,7 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
     private final BallGenerator ballGenerator;
-
-    private Balls answerBalls;
+    private GameSession gameSession;
 
     public BaseBallGame(GameConfig gameConfig) {
         this.inputHandler = gameConfig.getInputHandler();
@@ -26,16 +27,17 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
 
     @Override
     public void initialize() {
-        initializeAnswerBall();
+        initializeGameSession();
     }
 
     @Override
     public void run() {
 
-        while (true) {
-            initializeAnswerBall();
+        while (gameSession.isInProgress()) {
+            initializeGameSession();
+            AnswerBalls answerBalls = ballGenerator.generateBalls();
 
-            while (true) {
+            while (answerBalls.isInProgress()) {
                 outputHandler.showBallNumsInputComment();
 
                 Balls userInputBalls = inputHandler.getBallNumsFromUser();
@@ -44,9 +46,9 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
 
                 outputHandler.showBallNumsResult(gameResult);
 
-                if (userInputBalls.isThreeStrikeAgainst(answerBalls)) {
+                if (answerBalls.isThreeStrkieAgainst(userInputBalls)) {
                     outputHandler.showGameEndComment();
-                    break;
+                    answerBalls.changeAnswerBallStatusToEnd();
                 }
             }
 
@@ -54,18 +56,18 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
             UserAction userActionAboutRestart = inputHandler.getRestartInputFromUser();
 
             if (userActionAboutRestart == UserAction.END) {
-                break;
+                gameSession.changeGameStatusToEnd();
             }
         }
     }
 
-    private void initializeAnswerBall() {
-        this.answerBalls = ballGenerator.generateBalls();
+    private void initializeGameSession() {
+        this.gameSession = GameSession.init();
     }
 
-    private GameResult getGameResult(Balls userInputBalls, Balls answerBalls) {
-        int ball = userInputBalls.countBallAgainst(answerBalls);
-        int strike = userInputBalls.countStrikeAgainst(answerBalls);
+    private GameResult getGameResult(Balls userInputBalls, AnswerBalls answerBalls) {
+        int ball = answerBalls.countBallAgainst(userInputBalls);
+        int strike = answerBalls.countStrikeAgainst(userInputBalls);
         return new GameResult(ball, strike);
     }
 
