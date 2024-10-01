@@ -31,4 +31,5 @@ public class Ball {
     public boolean isStrike(Ball otherBall) {
         return number == otherBall.number && pos == otherBall.pos;
     }
+
 }

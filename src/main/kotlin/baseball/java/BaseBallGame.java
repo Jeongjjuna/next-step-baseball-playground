@@ -39,6 +39,7 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
                 outputHandler.showBallNumsInputComment();
 
                 Balls userInputBalls = inputHandler.getBallNumsFromUser();
+
                 GameResult gameResult = getGameResult(userInputBalls, answerBalls);
 
                 outputHandler.showBallNumsResult(gameResult);
