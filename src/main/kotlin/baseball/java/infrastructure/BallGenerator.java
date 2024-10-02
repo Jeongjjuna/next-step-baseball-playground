@@ -1,7 +1,7 @@
 package baseball.java.infrastructure;
 
-import baseball.java.domain.AnswerBalls;
+import baseball.java.domain.Balls;
 
 public interface BallGenerator {
-    AnswerBalls generateBalls();
+    Balls generateBalls();
 }

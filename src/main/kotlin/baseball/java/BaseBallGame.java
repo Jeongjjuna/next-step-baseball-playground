@@ -1,9 +1,9 @@
 package baseball.java;
 
 import baseball.java.config.GameConfig;
-import baseball.java.domain.AnswerBalls;
 import baseball.java.domain.Balls;
 import baseball.java.domain.GameResult;
+import baseball.java.domain.GameRound;
 import baseball.java.domain.GameSession;
 import baseball.java.domain.UserAction;
 import baseball.java.game.GameInitializable;
@@ -17,12 +17,14 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
     private final BallGenerator ballGenerator;
+    private final GameRound gameRound;
     private GameSession gameSession;
 
     public BaseBallGame(GameConfig gameConfig) {
         this.inputHandler = gameConfig.getInputHandler();
         this.outputHandler = gameConfig.getOutputHandler();
         this.ballGenerator = gameConfig.getBallGenerator();
+        this.gameRound = new GameRound(gameConfig.getGameLevel());
     }
 
     @Override
@@ -36,21 +38,24 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
         try {
             while (gameSession.isInProgress()) {
                 initializeGameSession();
-                AnswerBalls answerBalls = ballGenerator.generateBalls();
 
-                while (answerBalls.isInProgress()) {
+                initializeGameRound();
+                Balls answerBalls = ballGenerator.generateBalls();
+
+                while (gameRound.isInProgress()) {
+
                     outputHandler.showBallNumsInputComment();
-
                     Balls userInputBalls = inputHandler.getBallNumsFromUser();
 
                     GameResult gameResult = getGameResult(userInputBalls, answerBalls);
-
                     outputHandler.showBallNumsResult(gameResult);
 
-                    if (answerBalls.isThreeStrkieAgainst(userInputBalls)) {
+                    if (userInputBalls.isThreeStrikeAgainst(answerBalls)) {
                         outputHandler.showGameEndComment();
-                        answerBalls.changeAnswerBallStatusToEnd();
                     }
+
+                    int remainCount = gameRound.countDown();
+                    outputHandler.showRemainAttempts(remainCount);
                 }
 
                 outputHandler.showRestartComment();
@@ -61,7 +66,7 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
                 }
             }
         } catch (GameException e) {
-            System.out.println(e.getMessage());
+            // log.error 게임 속에서 나오는 의도된 에러들
         } catch (Exception e) {
             System.out.println("[ERROR] Internal System Error");
         }
@@ -71,7 +76,11 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
         this.gameSession = GameSession.init();
     }
 
-    private GameResult getGameResult(Balls userInputBalls, AnswerBalls answerBalls) {
+    private void initializeGameRound() {
+        gameRound.reset();
+    }
+
+    private GameResult getGameResult(Balls userInputBalls, Balls answerBalls) {
         int ball = answerBalls.countBallAgainst(userInputBalls);
         int strike = answerBalls.countStrikeAgainst(userInputBalls);
         return new GameResult(ball, strike);

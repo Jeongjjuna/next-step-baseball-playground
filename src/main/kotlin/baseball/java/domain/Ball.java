@@ -2,6 +2,7 @@ package baseball.java.domain;
 
 import baseball.java.GameException;
 
+
 public class Ball {
 
     private static final int MAX_NUM_RANGE = 9;
@@ -20,12 +21,6 @@ public class Ball {
         return new Ball(number, pos);
     }
 
-    private static void validateRange(int number) {
-        if (number < MIN_NUM_RANGE || number > MAX_NUM_RANGE) {
-            throw new GameException("[ERROR] Ball의 숫자 범위는 1~9 여야 합니다.");
-        }
-    }
-
     public boolean isBall(Ball otherBall) {
         return number == otherBall.number && pos != otherBall.pos;
     }
@@ -34,4 +29,9 @@ public class Ball {
         return number == otherBall.number && pos == otherBall.pos;
     }
 
+    private static void validateRange(int number) {
+        if (number < MIN_NUM_RANGE || number > MAX_NUM_RANGE) {
+            throw new GameException("[ERROR] Ball의 숫자 범위는 1~9 여야 합니다.");
+        }
+    }
 }

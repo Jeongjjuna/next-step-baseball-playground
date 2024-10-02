@@ -1,7 +1,6 @@
 package baseball.java.infrastructure;
 
 import baseball.java.GameException;
-import baseball.java.domain.AnswerBalls;
 import baseball.java.domain.Balls;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class RandomBallGenerator implements BallGenerator {
      * Random 외부 API를 주입받아서 사용해야, 테스트를 구현할 수 있을 것 같다.
      */
     @Override
-    public AnswerBalls generateBalls() {
+    public Balls generateBalls() {
 
         while (true) {
             List<Integer> ballNums = new ArrayList<>();
@@ -25,7 +24,7 @@ public class RandomBallGenerator implements BallGenerator {
             }
 
             try {
-                return AnswerBalls.create(ballNums);
+                return Balls.create(ballNums);
             } catch (GameException e) {
                 System.out.println(e.getMessage());
             }

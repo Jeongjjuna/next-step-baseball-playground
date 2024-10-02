@@ -11,4 +11,6 @@ public interface OutputHandler {
     void showGameEndComment();
 
     void showRestartComment();
+
+    void showRemainAttempts(int remainCount);
 }
