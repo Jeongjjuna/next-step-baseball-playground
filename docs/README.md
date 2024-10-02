@@ -33,7 +33,8 @@
   - 볼 생성 방식을 랜덤이 아니라 다른 구현체로 바꾸고 싶다면, 외부에서 BallGenerator를 구현하는 구현체를 만들고, GameConfig에 넣어서 주입해주면 된다.
 
 - Value Object
-  - Ball -> number, pos 가 모두 같으면 같은 Ball이라고 생각할 수 있다.
+  - Ball -> BallNumber, BallPosition 라는 Value Object를 가지고, 숫자가 같은지, 위치가 같은지를 비교할 수 있다.
+    - 불변성(final), 동등성(equals & hashcode), 유효성검증(숫자 범위 유효성은 Ball이 아닌 여기서)
 - 일급 컬렉션
   - ~ ing
 - Enum 다형성 활용
