@@ -32,6 +32,15 @@
   - 주입 받을 때는 구현체가 아닌, BallGenerator와 같은 인터페이스를 주입받는다.
   - 볼 생성 방식을 랜덤이 아니라 다른 구현체로 바꾸고 싶다면, 외부에서 BallGenerator를 구현하는 구현체를 만들고, GameConfig에 넣어서 주입해주면 된다.
 
+- Value Object
+  - Ball -> number, pos 가 모두 같으면 같은 Ball이라고 생각할 수 있다.
+- 일급 컬렉션
+  - ~ ing
+- Enum 다형성 활용
+  - ~ ing
+
+
+
 ## next step 프로그래밍 요구사항
 - 자바 코드 컨벤션을 지키면서 프로그래밍한다.
   - 기본적으로 Google Java Style Guide을 원칙으로 한다.
