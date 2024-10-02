@@ -1,11 +1,11 @@
 package baseball.java;
 
 import baseball.java.config.GameConfig;
-import baseball.java.domain.Balls;
 import baseball.java.domain.GameResult;
 import baseball.java.domain.GameRound;
 import baseball.java.domain.GameSession;
 import baseball.java.domain.UserAction;
+import baseball.java.domain.ball.Balls;
 import baseball.java.game.GameInitializable;
 import baseball.java.game.GameRunnable;
 import baseball.java.infrastructure.BallGenerator;

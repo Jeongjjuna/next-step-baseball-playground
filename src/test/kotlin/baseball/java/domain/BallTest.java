@@ -2,6 +2,7 @@ package baseball.java.domain;
 
 
 import baseball.java.GameException;
+import baseball.java.domain.ball.Ball;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

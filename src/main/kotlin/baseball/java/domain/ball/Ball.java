@@ -1,4 +1,4 @@
-package baseball.java.domain;
+package baseball.java.domain.ball;
 
 import baseball.java.GameException;
 

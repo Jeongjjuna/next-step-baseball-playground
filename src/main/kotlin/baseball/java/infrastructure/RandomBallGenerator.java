@@ -1,7 +1,7 @@
 package baseball.java.infrastructure;
 
 import baseball.java.GameException;
-import baseball.java.domain.Balls;
+import baseball.java.domain.ball.Balls;
 
 import java.util.ArrayList;
 import java.util.List;
