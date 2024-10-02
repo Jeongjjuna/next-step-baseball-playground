@@ -21,11 +21,16 @@
   - 난이도에 따라 플레이어 시도 횟수를 지정해보자.
     - GameLevel 인터페이스를 활용하여 여러 구현체를 내부에 주입(Hard, Medium, easy)
 - 리스코프 치환 원칙
-  - Balls를 추상클래스로 반들고, UserBalls와 AnswerBall로 나눠보자.( ~ ing)
-  - 이때 리스코프 치환 원칙을 잘 지키는지 검토하자.
+  - Balls를 추상클래스로 반들고, UserBalls와 AnswerBall로 나누려고 했음.
+    - 하지만 크게 중복/구별 되는 기능이 명확하지 않아서 그냥 두기로 함.
 - 인터페이스 분리 원칙
+  - , GameRunnable 인터페이스로 분리
+  - BaseBallGame말고 다른 Game을 구현할 때 초기화부분이 필요한지에 따라 GameInitializable을 추가하거나 없앨 수 있음.
 - 의존성 역전 원칙
-
+  - 입/출력, 볼생성 등을 담당하는 구현체(인프라객체)들은, 모두 Application단에서 객체를 생성하여 GameConfig에 넣어주고,
+  - 실제 게임 진행을 담당하는 BaseBallGame은 외부에서 생성된 인프라객체들을 주입받아서 사용할 수 있다.
+  - 주입 받을 때는 구현체가 아닌, BallGenerator와 같은 인터페이스를 주입받는다.
+  - 볼 생성 방식을 랜덤이 아니라 다른 구현체로 바꾸고 싶다면, 외부에서 BallGenerator를 구현하는 구현체를 만들고, GameConfig에 넣어서 주입해주면 된다.
 
 ## next step 프로그래밍 요구사항
 - 자바 코드 컨벤션을 지키면서 프로그래밍한다.
