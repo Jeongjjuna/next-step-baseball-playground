@@ -26,6 +26,23 @@ public class Balls {
         return new Balls(balls);
     }
 
+    public boolean isThreeStrikeAgainst(Balls otherBalls) {
+        return balls.stream()
+            .allMatch(otherBalls::isStrike);
+    }
+
+    public int countBallAgainst(Balls otherBalls) {
+        return (int) balls.stream()
+            .filter(otherBalls::isBall)
+            .count();
+    }
+
+    public int countStrikeAgainst(Balls otherBalls) {
+        return (int) balls.stream()
+            .filter(otherBalls::isStrike)
+            .count();
+    }
+
     private static void validateDuplicate(List<Integer> ballNums) {
         Set<Integer> uniqueNums = new HashSet<>(ballNums);
         if (uniqueNums.size() != ballNums.size()) {
@@ -46,23 +63,6 @@ public class Balls {
             balls.add(ball);
         }
         return balls;
-    }
-
-    public boolean isThreeStrikeAgainst(Balls otherBalls) {
-        return balls.stream()
-                .allMatch(otherBalls::isStrike);
-    }
-
-    public int countBallAgainst(Balls otherBalls) {
-        return (int) balls.stream()
-                .filter(otherBalls::isBall)
-                .count();
-    }
-
-    public int countStrikeAgainst(Balls otherBalls) {
-        return (int) balls.stream()
-                .filter(otherBalls::isStrike)
-                .count();
     }
 
     private boolean isBall(Ball otherBall) {
