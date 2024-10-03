@@ -7,8 +7,11 @@ import baseball.java.domain.ball.Balls;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class ConsoleInputHandler implements InputHandler {
+
+    private static final Logger LOGGER = Logger.getLogger(ConsoleInputHandler.class.getName());
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -27,7 +30,7 @@ public class ConsoleInputHandler implements InputHandler {
             try {
                 return Balls.create(nums);
             } catch (GameException e) {
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
         }
 

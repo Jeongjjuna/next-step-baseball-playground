@@ -12,7 +12,11 @@ import baseball.java.infrastructure.BallGenerator;
 import baseball.java.infrastructure.InputHandler;
 import baseball.java.infrastructure.OutputHandler;
 
+import java.util.logging.Logger;
+
 public class BaseBallGame implements GameInitializable, GameRunnable {
+
+    private static final Logger LOGGER = Logger.getLogger(BaseBallGame.class.getName());
 
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
@@ -66,9 +70,9 @@ public class BaseBallGame implements GameInitializable, GameRunnable {
                 }
             }
         } catch (GameException e) {
-            // log.error 게임 속에서 나오는 의도된 에러들
+            LOGGER.info(e.getMessage());
         } catch (Exception e) {
-            System.out.println("[ERROR] Internal System Error");
+            LOGGER.severe("[ERROR] Internal System Error");
         }
     }
 

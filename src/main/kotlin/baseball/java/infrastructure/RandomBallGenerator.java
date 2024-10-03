@@ -6,8 +6,11 @@ import baseball.java.domain.ball.Balls;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class RandomBallGenerator implements BallGenerator {
+
+    private static final Logger LOGGER = Logger.getLogger(RandomBallGenerator.class.getName());
 
     private final Random random = new Random();
     /**
@@ -26,7 +29,7 @@ public class RandomBallGenerator implements BallGenerator {
             try {
                 return Balls.create(ballNums);
             } catch (GameException e) {
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
         }
     }
