@@ -10,7 +10,6 @@ public enum UserAction {
 
     private final String description; // 필드
 
-    // 생성자
     UserAction(String description) {
         this.description = description;
     }
@@ -19,6 +18,6 @@ public enum UserAction {
         return Arrays.stream(UserAction.values())
                 .filter(action -> action.description.equals(input))
                 .findFirst()
-                .orElseThrow(() -> new GameException("[ERROR] 입력값이 올바르지 않습니다."));
+                .orElseThrow(() -> new GameException("[ERROR] 지원되지 않는 요청입니다."));
     }
 }
