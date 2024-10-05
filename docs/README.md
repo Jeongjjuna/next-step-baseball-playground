@@ -36,9 +36,7 @@
   - Ball -> BallNumber, BallPosition 라는 Value Object를 가지고, 숫자가 같은지, 위치가 같은지를 비교할 수 있다.
     - 불변성(final), 동등성(equals & hashcode), 유효성검증(숫자 범위 유효성은 Ball이 아닌 여기서)
 - 일급 컬렉션
-  - ~ ing
-- Enum 다형성 활용
-  - ~ ing
+  - List<Ball>필드로 가지는 Balls를 통해 컬렉션을 추상화하고, 관련 로직을 내부에 구현할 수 있다.
 
 
 
