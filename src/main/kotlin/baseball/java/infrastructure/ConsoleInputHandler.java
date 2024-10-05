@@ -38,7 +38,13 @@ public class ConsoleInputHandler implements InputHandler {
 
     @Override
     public UserAction getRestartInputFromUser() {
-        String input = scanner.next();
-        return UserAction.create(input);
+        while (true) {
+            String input = scanner.next();
+            try {
+                return UserAction.create(input);
+            } catch (GameException e) {
+                LOGGER.info(e.getMessage());
+            }
+        }
     }
 }
